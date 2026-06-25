@@ -8,12 +8,13 @@ import UIKit
 
 // MARK: - Post View Controller
 
-final class ProductViewController: UIViewController {
+final class ProductViewController: UIViewController, UISearchResultsUpdating{
     
     // MARK: - UI Components
     
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
+    private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Properties
     //   TODO: -  need to replace with dependency injection
@@ -37,6 +38,8 @@ final class ProductViewController: UIViewController {
         title = "Post"
         view.backgroundColor = .white
         
+        
+        setupSearchBar()
         setupTableView()
         setupActivityIndicator()
         showLoader()
@@ -44,9 +47,22 @@ final class ProductViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
                 self?.hideLoader()
+                
             }
         }
     }
+    
+    //    MARK: - Setup SearchBar
+       private func setupSearchBar() {
+           searchController.searchResultsUpdater = self
+           searchController.obscuresBackgroundDuringPresentation = false
+           searchController.searchBar.placeholder = "Search Posts"
+           
+           navigationItem.searchController = searchController
+           navigationItem.hidesSearchBarWhenScrolling = false
+           definesPresentationContext = true
+            
+        }
     
     //    MARK: - Set up TableView
     
@@ -99,6 +115,14 @@ extension ProductViewController {
     func reloadTableView() {
         tableView.reloadData()
     }
+    //MARK: -  Updating Search Result
+
+        func updateSearchResults(for searchController: UISearchController) {
+            let text = searchController.searchBar.text ?? ""
+            viewModel.SearchPost(with: text)
+            tableView.reloadData()
+        
+        }
 }
 
 // MARK: - UITableViewDataSource
