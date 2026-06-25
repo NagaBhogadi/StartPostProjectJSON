@@ -13,6 +13,7 @@ A UIKit-based iOS application that demonstrates fetching and displaying JSON dat
 - NetworkManager for API calls
 - Error handling
 - Clean project structure
+- Search Posts: Added search bar support to filter loaded posts by title using MVVM architecture.
 
 ## Technologies Used
 
@@ -24,9 +25,19 @@ A UIKit-based iOS application that demonstrates fetching and displaying JSON dat
 - Auto Layout
 - Xcode
 
-## 📱 App Screenshot
+### Search Functionality
 
-<img width="300" height="700" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-25 at 12 50 47" src="https://github.com/user-attachments/assets/a2a0320b-3ce2-43f4-86c0-173495d8dfd9" />
+Added `UISearchController` to the Post screen.  
+Users can now search posts by title. The filtering logic is handled inside `ProductViewModel`, keeping the ViewController clean and following the MVVM pattern.
+
+## 📱 App Screenshot
+## Screenshot
+
+<img width="300" height="700" alt="Simulator Screenshot - iPhone 17 Pro - 2026-06-25 at 18 13 29" src="https://github.com/user-attachments/assets/885de685-04fc-4f82-b13f-329da5015403" />
+
+## 📱 Sample Vedio
+
+<img width="295" height="640" alt="Simulator Screen Recording - iPhone 17 Pro - 2026-06-25 at 18 13 24" src="https://github.com/user-attachments/assets/175a8d09-6c59-480b-af29-c031287cf546" />
 
 
 ## Project Structure
